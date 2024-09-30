@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    app: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: mongo-express
+        image: mongo-express:latest  # Check docker hub website for the mongo-express else get the latest version.
+        ports:
+        - containerPort: 8081  # Mongo-express use port
+        env:
+          - name: ME_CONFIG_MONGODB_ADMINUSERNAME   # reference from secret
+            valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: mongo-user
+          - name: ME_CONFIG_MONGODB_ADMINPASSWORD   # reference from secret
+            valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: mongo-password
+          - name: ME_CONFIG_MONGODB_SERVER          # reference from mongo-config
+            valueFrom:
+              configMapKeyRef:                         
+                name: mongo-config
+                key: mongo-url
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+spec:
+  type: NodePort
+  selector: 
+    app: webapp # link to kind : deployment
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30100   # will allocate a port from a range (default: 30000-32767)
