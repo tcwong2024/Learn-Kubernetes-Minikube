@@ -1,11 +1,12 @@
 # Learn Kubernetes in Minikube
+### This exercise involves creating a Docker container to set up a MongoDB database within a Kubernetes cluster running on a Minikube local development environment.
 
 ## Install Minikube 
-### Windows installation
+### Option 1. Windows installation
 ```
 choco install minikube
 ```
-### WSL - Ubuntu (Linux) installation
+### Option 2 : WSL - Ubuntu (Linux) installation
 ```
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-arm64
 sudo install minikube-linux-arm64 /usr/local/bin/minikube && rm minikube-linux-arm64
