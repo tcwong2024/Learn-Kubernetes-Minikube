@@ -1,3 +1,6 @@
+<img src="https://github.com/user-attachments/assets/6369cf14-3257-4b91-baba-1e20b5a1eec5" alt="git_banner" width="450" height="300">
+<!--![k8s_docker-minikube](https://github.com/user-attachments/assets/6369cf14-3257-4b91-baba-1e20b5a1eec5)-->
+
 # Learn Kubernetes in Minikube
 ### This exercise involves creating a Docker container to set up a MongoDB database within a Kubernetes cluster running on a Minikube local development environment.
 
